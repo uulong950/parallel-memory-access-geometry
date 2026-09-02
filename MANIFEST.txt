@@ -1,0 +1,15 @@
+Parallel Memory-Access Geometry — initial foundation package
+
+README.md
+theory/README.md
+theory/01_parallel_access_geometry.md
+theory/02_capacity_and_obstruction.md
+
+Markdown normalization:
+- GitHub display math uses $$ ... $$
+- GitHub inline math uses $ ... $
+- fenced code blocks are balanced
+- no legacy \[...\] or \(...\) delimiters remain
+
+Validation:
+PASS
