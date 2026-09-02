@@ -5,13 +5,8 @@
 This document develops the second foundational layer of Parallel Memory-Access Geometry (PMAG):
 
 $$
-\boxed{
-\text{capacity}
-\qquad\text{and}\qquad
-\text{obstruction}.
-}
+\boxed{ \text{capacity} \qquad\text{and}\qquad \text{obstruction}. }
 $$
-
 The central distinction is:
 
 > **Capacity asks how good one access can become under a declared transformation family. Feasibility asks whether one shared transformation can attain the required capacities for all accesses simultaneously.**
@@ -40,7 +35,6 @@ A PMAG optimization instance is declared by
 $$
 (E,\;A,\;H,\;\mathcal T,\;\Phi),
 $$
-
 where
 
 - $E$ is the execution domain;
@@ -52,25 +46,13 @@ where
 For a maximization objective, define
 
 $$
-\boxed{
-\mathrm{Cap}(A,H,\mathcal T,\Phi)
-=
-\max_{T\in\mathcal T}
-\Phi(H\circ T\circ A).
-}
+\boxed{ \mathrm{Cap}(A,H,\mathcal T,\Phi) = \max_{T\in\mathcal T} \Phi(H\circ T\circ A). }
 $$
-
 For a minimization objective,
 
 $$
-\boxed{
-\mathrm{Cap}(A,H,\mathcal T,\Phi)
-=
-\min_{T\in\mathcal T}
-\Phi(H\circ T\circ A).
-}
+\boxed{ \mathrm{Cap}(A,H,\mathcal T,\Phi) = \min_{T\in\mathcal T} \Phi(H\circ T\circ A). }
 $$
-
 Therefore a statement such as
 
 > "this layout is optimal"
@@ -88,49 +70,31 @@ Suppose a maximization objective has an external ideal value
 $$
 \Phi_{\mathrm{ideal}}.
 $$
-
 For a candidate transformation $T$, write
 
 $$
-\Phi_T
-=
-\Phi(H\circ T\circ A)
+\Phi_T = \Phi(H\circ T\circ A)
 $$
-
 and
 
 $$
-\Phi^\*
-=
-\mathrm{Cap}(A,H,\mathcal T,\Phi).
+\Phi^\* = \mathrm{Cap}(A,H,\mathcal T,\Phi).
 $$
-
 Then
 
 $$
-\Phi_T
-\le
-\Phi^\*
-\le
-\Phi_{\mathrm{ideal}}.
+\Phi_T \le \Phi^\* \le \Phi_{\mathrm{ideal}}.
 $$
-
 This separates two gaps:
 
 $$
-\boxed{
-\Phi_{\mathrm{ideal}}-\Phi^\*
-}
+\boxed{ \Phi_{\mathrm{ideal}}-\Phi^\* }
 $$
-
 is unavoidable under the declared model and transformation family, while
 
 $$
-\boxed{
-\Phi^\*-\Phi_T
-}
+\boxed{ \Phi^\*-\Phi_T }
 $$
-
 is avoidable candidate loss.
 
 For minimization objectives the inequalities reverse, but the conceptual separation is the same.
@@ -142,11 +106,8 @@ For minimization objectives the inequalities reverse, but the conceptual separat
 A large class of PMAG reference models leads to an effective linear operator of the form
 
 $$
-\boxed{
-M(X)=A+LXR,
-}
+\boxed{ M(X)=A+LXR, }
 $$
-
 where all maps are linear over a field $\mathbb F$.
 
 Let
@@ -154,29 +115,22 @@ Let
 $$
 A:\mathbb F^n\rightarrow\mathbb F^m,
 $$
-
 $$
 R:\mathbb F^n\rightarrow\mathbb F^q,
 $$
-
 $$
 X:\mathbb F^q\rightarrow\mathbb F^p,
 $$
-
 $$
 L:\mathbb F^p\rightarrow\mathbb F^m.
 $$
-
 The variable $X$ is the transformation parameter.
 
 The PMAG rank-capacity problem is
 
 $$
-\boxed{
-\max_X \mathrm{rank}(A+LXR).
-}
+\boxed{ \max_X \mathrm{rank}(A+LXR). }
 $$
-
 RM-001 is a specialization of this problem.
 
 ---
@@ -186,40 +140,15 @@ RM-001 is a specialization of this problem.
 Let
 
 $$
-\mathcal M(X)
-=
-\begin{bmatrix}
-X & A\\
-B & C
-\end{bmatrix},
+\mathcal M(X) = \begin{bmatrix} X & A\\ B & C \end{bmatrix},
 $$
-
 where $X\in\mathbb F^{p\times q}$ is arbitrary and all other blocks are fixed.
 
 Then
 
 $$
-\boxed{
-\max_X
-\mathrm{rank}
-\begin{bmatrix}
-X&A\\
-B&C
-\end{bmatrix}
-=
-\min
-\left\{
-p+\mathrm{rank}[B\ C],
-\;
-q+\mathrm{rank}
-\begin{bmatrix}
-A\\
-C
-\end{bmatrix}
-\right\}.
-}
+\boxed{ \max_X \mathrm{rank} \begin{bmatrix} X&A\\ B&C \end{bmatrix} = \min \left\{ p+\mathrm{rank}[B\ C], \; q+\mathrm{rank} \begin{bmatrix} A\\ C \end{bmatrix} \right\}. }
 $$
-
 ## Proof
 
 The two upper bounds are immediate.
@@ -227,23 +156,13 @@ The two upper bounds are immediate.
 The top $p$ rows can increase the rank of the fixed bottom block by at most $p$, so
 
 $$
-\mathrm{rank}\mathcal M(X)
-\le
-p+\mathrm{rank}[B\ C].
+\mathrm{rank}\mathcal M(X) \le p+\mathrm{rank}[B\ C].
 $$
-
 Likewise, the left $q$ columns can increase the rank of the fixed right block by at most $q$, so
 
 $$
-\mathrm{rank}\mathcal M(X)
-\le
-q+\mathrm{rank}
-\begin{bmatrix}
-A\\
-C
-\end{bmatrix}.
+\mathrm{rank}\mathcal M(X) \le q+\mathrm{rank} \begin{bmatrix} A\\ C \end{bmatrix}.
 $$
-
 It remains to show that the smaller bound can always be attained.
 
 Let
@@ -251,16 +170,11 @@ Let
 $$
 c=\mathrm{rank}C.
 $$
-
 Using invertible row operations on the bottom block and invertible column operations on the right block, reduce $C$ to
 
 $$
-\begin{bmatrix}
-I_c&0\\
-0&0
-\end{bmatrix}.
+\begin{bmatrix} I_c&0\\ 0&0 \end{bmatrix}.
 $$
-
 Using those pivot rows and columns, eliminate the corresponding components of $A$ and $B$.
 
 Because $X$ is completely free, additions to the free block caused by these operations do not restrict the set of values attainable by $X$.
@@ -268,23 +182,15 @@ Because $X$ is completely free, additions to the free block caused by these oper
 The matrix is therefore equivalent, for purposes of maximum rank, to
 
 $$
-\begin{bmatrix}
-X'&0&A_0\\
-0&I_c&0\\
-B_0&0&0
-\end{bmatrix},
+\begin{bmatrix} X'&0&A_0\\ 0&I_c&0\\ B_0&0&0 \end{bmatrix},
 $$
-
 with $X'$ still arbitrary.
 
 Let
 
 $$
-a=\mathrm{rank}A_0,
-\qquad
-b=\mathrm{rank}B_0.
+a=\mathrm{rank}A_0, \qquad b=\mathrm{rank}B_0.
 $$
-
 By further invertible operations confined to the corresponding row and column groups, reduce $A_0$ and $B_0$ to identity blocks of ranks $a$ and $b$.
 
 Those fixed pivots contribute
@@ -292,7 +198,6 @@ Those fixed pivots contribute
 $$
 c+a+b
 $$
-
 to the rank.
 
 After removing their pivot rows and columns, the only remaining useful part of the free block has size
@@ -300,64 +205,36 @@ After removing their pivot rows and columns, the only remaining useful part of t
 $$
 (p-a)\times(q-b).
 $$
-
 Choose that free subblock to contain an identity matrix of size
 
 $$
 \min(p-a,q-b).
 $$
-
 Hence
 
 $$
-\max_X\mathrm{rank}\mathcal M(X)
-=
-c+a+b+\min(p-a,q-b).
+\max_X\mathrm{rank}\mathcal M(X) = c+a+b+\min(p-a,q-b).
 $$
-
 Now
 
 $$
-\mathrm{rank}[B\ C]
-=
-c+b
+\mathrm{rank}[B\ C] = c+b
 $$
-
 and
 
 $$
-\mathrm{rank}
-\begin{bmatrix}
-A\\
-C
-\end{bmatrix}
-=
-c+a.
+\mathrm{rank} \begin{bmatrix} A\\ C \end{bmatrix} = c+a.
 $$
-
 Therefore
 
 $$
-c+a+b+\min(p-a,q-b)
-=
-\min\{p+c+b,\;q+c+a\},
+c+a+b+\min(p-a,q-b) = \min\{p+c+b,\;q+c+a\},
 $$
-
 which is exactly
 
 $$
-\min
-\left\{
-p+\mathrm{rank}[B\ C],
-\;
-q+\mathrm{rank}
-\begin{bmatrix}
-A\\
-C
-\end{bmatrix}
-\right\}.
+\min \left\{ p+\mathrm{rank}[B\ C], \; q+\mathrm{rank} \begin{bmatrix} A\\ C \end{bmatrix} \right\}.
 $$
-
 Thus the bound is attainable. ∎
 
 ---
@@ -367,23 +244,8 @@ Thus the bound is attainable. ∎
 For linear maps over any field $\mathbb F$,
 
 $$
-\boxed{
-\max_X
-\mathrm{rank}(A+LXR)
-=
-\min
-\left\{
-\mathrm{rank}[A\ L],
-\;
-\mathrm{rank}
-\begin{bmatrix}
-A\\
-R
-\end{bmatrix}
-\right\}.
-}
+\boxed{ \max_X \mathrm{rank}(A+LXR) = \min \left\{ \mathrm{rank}[A\ L], \; \mathrm{rank} \begin{bmatrix} A\\ R \end{bmatrix} \right\}. }
 $$
-
 This is the basic single-access capacity theorem for the linear PMAG family $A+LXR$.
 
 ## Proof
@@ -391,53 +253,26 @@ This is the basic single-access capacity theorem for the linear PMAG family $A+L
 Let
 
 $$
-\ell=\mathrm{rank}L,
-\qquad
-r=\mathrm{rank}R.
+\ell=\mathrm{rank}L, \qquad r=\mathrm{rank}R.
 $$
-
 Choose invertible basis changes so that
 
 $$
-L
-\sim
-\begin{bmatrix}
-I_\ell&0\\
-0&0
-\end{bmatrix}
+L \sim \begin{bmatrix} I_\ell&0\\ 0&0 \end{bmatrix}
 $$
-
 and
 
 $$
-R
-\sim
-\begin{bmatrix}
-I_r&0\\
-0&0
-\end{bmatrix}.
+R \sim \begin{bmatrix} I_r&0\\ 0&0 \end{bmatrix}.
 $$
-
 More explicitly, there exist invertible matrices $U,V,W,Z$ such that
 
 $$
-ULV
-=
-\begin{bmatrix}
-I_\ell&0\\
-0&0
-\end{bmatrix},
+ULV = \begin{bmatrix} I_\ell&0\\ 0&0 \end{bmatrix},
 $$
-
 $$
-WRZ
-=
-\begin{bmatrix}
-I_r&0\\
-0&0
-\end{bmatrix}.
+WRZ = \begin{bmatrix} I_r&0\\ 0&0 \end{bmatrix}.
 $$
-
 Multiplication by invertible matrices does not change rank.
 
 As $X$ ranges over all matrices of its declared size,
@@ -445,7 +280,6 @@ As $X$ ranges over all matrices of its declared size,
 $$
 V^{-1}XW^{-1}
 $$
-
 also ranges over all such matrices.
 
 Therefore the transformed family
@@ -453,13 +287,11 @@ Therefore the transformed family
 $$
 U(A+LXR)Z
 $$
-
 differs from the fixed matrix
 
 $$
 UAZ
 $$
-
 only by an arbitrary $\ell\times r$ top-left block.
 
 The problem is therefore exactly a free-corner completion problem.
@@ -472,23 +304,8 @@ By Lemma 1, its maximum rank equals the minimum of:
 Undoing the invertible basis changes gives
 
 $$
-\boxed{
-\max_X
-\mathrm{rank}(A+LXR)
-=
-\min
-\left\{
-\mathrm{rank}[A\ L],
-\;
-\mathrm{rank}
-\begin{bmatrix}
-A\\
-R
-\end{bmatrix}
-\right\}.
-}
+\boxed{ \max_X \mathrm{rank}(A+LXR) = \min \left\{ \mathrm{rank}[A\ L], \; \mathrm{rank} \begin{bmatrix} A\\ R \end{bmatrix} \right\}. }
 $$
-
 ∎
 
 ---
@@ -500,57 +317,35 @@ The theorem gives two independent ceilings.
 Define
 
 $$
-\rho_{\mathrm{out}}
-=
-\mathrm{rank}[A\ L]
+\rho_{\mathrm{out}} = \mathrm{rank}[A\ L]
 $$
-
 and
 
 $$
-\rho_{\mathrm{in}}
-=
-\mathrm{rank}
-\begin{bmatrix}
-A\\
-R
-\end{bmatrix}.
+\rho_{\mathrm{in}} = \mathrm{rank} \begin{bmatrix} A\\ R \end{bmatrix}.
 $$
-
 Then
 
 $$
-\boxed{
-\rho^\*
-=
-\min(\rho_{\mathrm{out}},\rho_{\mathrm{in}}).
-}
+\boxed{ \rho^\* = \min(\rho_{\mathrm{out}},\rho_{\mathrm{in}}). }
 $$
-
 ## Output-side ceiling
 
 Because
 
 $$
-\mathrm{Im}(A+LXR)
-\subseteq
-\mathrm{Im}A+\mathrm{Im}L,
+\mathrm{Im}(A+LXR) \subseteq \mathrm{Im}A+\mathrm{Im}L,
 $$
-
 the effective map cannot use resource directions outside
 
 $$
 \mathrm{Im}A+\mathrm{Im}L.
 $$
-
 Therefore
 
 $$
-\rho_{\mathrm{out}}
-=
-\dim(\mathrm{Im}A+\mathrm{Im}L)
+\rho_{\mathrm{out}} = \dim(\mathrm{Im}A+\mathrm{Im}L)
 $$
-
 is an output-resource span ceiling.
 
 ## Input-side ceiling
@@ -558,11 +353,8 @@ is an output-resource span ceiling.
 If a domain direction is simultaneously invisible to $A$ and $R$, then no choice of $X$ can make it visible:
 
 $$
-v\in\ker A\cap\ker R
-\quad\Longrightarrow\quad
-(A+LXR)v=0
+v\in\ker A\cap\ker R \quad\Longrightarrow\quad (A+LXR)v=0
 $$
-
 for every $X$.
 
 Hence
@@ -570,21 +362,13 @@ Hence
 $$
 \ker A\cap\ker R
 $$
-
 is an unavoidable kernel.
 
 Since
 
 $$
-\mathrm{rank}
-\begin{bmatrix}
-A\\
-R
-\end{bmatrix}
-=
-n-\dim(\ker A\cap\ker R),
+\mathrm{rank} \begin{bmatrix} A\\ R \end{bmatrix} = n-\dim(\ker A\cap\ker R),
 $$
-
 the input-side ceiling is exactly the amount of domain information not destroyed before the transformation can act.
 
 ## Completeness
@@ -602,53 +386,31 @@ In the canonical RM-001 model,
 $$
 M(P)=C+PR.
 $$
-
 Set
 
 $$
-A=C,
-\qquad
-L=I,
-\qquad
-X=P.
+A=C, \qquad L=I, \qquad X=P.
 $$
-
 Then
 
 $$
 \mathrm{rank}[C\ I]=n
 $$
-
 in the square $n$-dimensional output case, and Theorem 1 gives
 
 $$
-\boxed{
-\max_P \mathrm{rank}(C+PR)
-=
-\mathrm{rank}
-\begin{bmatrix}
-C \\
-R
-\end{bmatrix}
-}
+\boxed{ \max_P \mathrm{rank}(C+PR) = \mathrm{rank} \begin{bmatrix} C \\ R \end{bmatrix} }
 $$
-
 Equivalently,
 
 $$
-\boxed{
-\max_P \mathrm{rank}(C+PR)
-=
-n-\dim(\ker C\cap\ker R)
-}
+\boxed{ \max_P \mathrm{rank}(C+PR) = n-\dim(\ker C\cap\ker R) }
 $$
-
 Thus the common kernel
 
 $$
 \ker C\cap\ker R
 $$
-
 is the exact access-intrinsic obstruction in the square canonical model.
 
 ---
@@ -658,83 +420,33 @@ is the exact access-intrinsic obstruction in the square canonical model.
 RM-001 uses
 
 $$
-M(P)
-=
-B_rR+B_cC+B_cPR.
+M(P) = B_rR+B_cC+B_cPR.
 $$
-
 Set
 
 $$
-A=B_rR+B_cC,
-\qquad
-L=B_c,
-\qquad
-X=P.
+A=B_rR+B_cC, \qquad L=B_c, \qquad X=P.
 $$
-
 Theorem 1 gives
 
 $$
-\max_P\mathrm{rank}M(P)
-=
-\min
-\left\{
-\mathrm{rank}[B_rR+B_cC\ \ B_c],
-\;
-\mathrm{rank}
-\begin{bmatrix}
-B_rR+B_cC\\
-R
-\end{bmatrix}
-\right\}.
+\max_P\mathrm{rank}M(P) = \min \left\{ \mathrm{rank}[B_rR+B_cC\ \ B_c], \; \mathrm{rank} \begin{bmatrix} B_rR+B_cC\\ R \end{bmatrix} \right\}.
 $$
-
 The first term simplifies because the columns of $B_cC$ already lie in the column span of $B_c$:
 
 $$
-\mathrm{rank}[B_rR+B_cC\ \ B_c]
-=
-\mathrm{rank}[B_rR\ \ B_c].
+\mathrm{rank}[B_rR+B_cC\ \ B_c] = \mathrm{rank}[B_rR\ \ B_c].
 $$
-
 The second term simplifies by subtracting $B_r$ times the lower block $R$ from the upper block:
 
 $$
-\mathrm{rank}
-\begin{bmatrix}
-B_rR+B_cC\\
-R
-\end{bmatrix}
-=
-\mathrm{rank}
-\begin{bmatrix}
-B_cC\\
-R
-\end{bmatrix}.
+\mathrm{rank} \begin{bmatrix} B_rR+B_cC\\ R \end{bmatrix} = \mathrm{rank} \begin{bmatrix} B_cC\\ R \end{bmatrix}.
 $$
-
 Therefore
 
 $$
-\boxed{
-\rho^\*
-=
-\max_P\mathrm{rank}M(P)
-=
-\min
-\left\{
-\mathrm{rank}[B_rR\ \ B_c],
-\;
-\mathrm{rank}
-\begin{bmatrix}
-R\\
-B_cC
-\end{bmatrix}
-\right\}.
-}
+\boxed{ \rho^\* = \max_P\mathrm{rank}M(P) = \min \left\{ \mathrm{rank}[B_rR\ \ B_c], \; \mathrm{rank} \begin{bmatrix} R\\ B_cC \end{bmatrix} \right\}. }
 $$
-
 This is the exact hardware-aware rank ceiling used by RM-001.
 
 Unlike finite $n=2$ exhaustive verification, the argument above proves the formula for arbitrary compatible dimensions over any field.
@@ -750,31 +462,18 @@ Corollary 2 exposes two distinct structural obstructions.
 Define
 
 $$
-S_{\mathrm{out}}
-=
-\mathrm{Im}(B_rR)+\mathrm{Im}(B_c).
+S_{\mathrm{out}} = \mathrm{Im}(B_rR)+\mathrm{Im}(B_c).
 $$
-
 For every $P$,
 
 $$
-\mathrm{Im}M(P)
-\subseteq
-S_{\mathrm{out}}.
+\mathrm{Im}M(P) \subseteq S_{\mathrm{out}}.
 $$
-
 Therefore
 
 $$
-\boxed{
-\mathrm{rank}M(P)
-\le
-\dim S_{\mathrm{out}}
-=
-\mathrm{rank}[B_rR\ \ B_c].
-}
+\boxed{ \mathrm{rank}M(P) \le \dim S_{\mathrm{out}} = \mathrm{rank}[B_rR\ \ B_c]. }
 $$
-
 If the hardware projection exposes only a low-dimensional resource span, no transformation in this family can exceed it.
 
 ## 10.2 Domain-information obstruction
@@ -782,65 +481,40 @@ If the hardware projection exposes only a low-dimensional resource span, no tran
 Define
 
 $$
-K_{\mathrm{in}}
-=
-\ker R\cap\ker(B_cC).
+K_{\mathrm{in}} = \ker R\cap\ker(B_cC).
 $$
-
 If
 
 $$
 v\in K_{\mathrm{in}},
 $$
-
 then
 
 $$
 Rv=0
 $$
-
 and
 
 $$
 B_cCv=0.
 $$
-
 Hence
 
 $$
-M(P)v
-=
-B_rRv+B_cCv+B_cPRv
-=
-0
+M(P)v = B_rRv+B_cCv+B_cPRv = 0
 $$
-
 for every $P$.
 
 Thus
 
 $$
-\boxed{
-K_{\mathrm{in}}
-\subseteq
-\ker M(P)
-\qquad
-\forall P.
-}
+\boxed{ K_{\mathrm{in}} \subseteq \ker M(P) \qquad \forall P. }
 $$
-
 Moreover,
 
 $$
-\mathrm{rank}
-\begin{bmatrix}
-R\\
-B_cC
-\end{bmatrix}
-=
-\ell-\dim K_{\mathrm{in}}.
+\mathrm{rank} \begin{bmatrix} R\\ B_cC \end{bmatrix} = \ell-\dim K_{\mathrm{in}}.
 $$
-
 This is the exact domain-side information ceiling.
 
 ## 10.3 Completeness
@@ -850,13 +524,8 @@ The rank-capacity theorem states that the best achievable rank is precisely the 
 Therefore, for this single-access linear family,
 
 $$
-\boxed{
-\text{resource-span obstruction}
-+
-\text{domain-information obstruction}
-}
+\boxed{ \text{resource-span obstruction} + \text{domain-information obstruction} }
 $$
-
 completely characterize the rank ceiling.
 
 ---
@@ -868,85 +537,45 @@ Let the execution domain have dimension
 $$
 \ell.
 $$
-
 For RM-001 access $i$, define the full logical access map
 
 $$
-J_i=
-\begin{bmatrix}
-R_i\\
-C_i
-\end{bmatrix}.
+J_i= \begin{bmatrix} R_i\\ C_i \end{bmatrix}.
 $$
-
 Define the access-intrinsic loss
 
 $$
-\boxed{
-d_i
-=
-\ell_i-\mathrm{rank}J_i.
-}
+\boxed{ d_i = \ell_i-\mathrm{rank}J_i. }
 $$
-
 This counts execution directions already lost by the declared logical access geometry.
 
 Let
 
 $$
-\rho_i^\*
-=
-\max_P\mathrm{rank}M_i(P)
+\rho_i^\* = \max_P\mathrm{rank}M_i(P)
 $$
-
 be the exact hardware/shear-family capacity.
 
 Define the unavoidable hardware/transformation-family loss
 
 $$
-\boxed{
-\eta_i^\*
-=
-\mathrm{rank}J_i-\rho_i^\*.
-}
+\boxed{ \eta_i^\* = \mathrm{rank}J_i-\rho_i^\*. }
 $$
-
 For a concrete transformation $P$, define the avoidable candidate loss
 
 $$
-\boxed{
-e_i(P)
-=
-\rho_i^\*-\mathrm{rank}M_i(P).
-}
+\boxed{ e_i(P) = \rho_i^\*-\mathrm{rank}M_i(P). }
 $$
-
 Then
 
 $$
-\begin{aligned}
-\mathrm{nullity}M_i(P)
-&=
-\ell_i-\mathrm{rank}M_i(P)\\
-&=
-\bigl(\ell_i-\mathrm{rank}J_i\bigr)
-+
-\bigl(\mathrm{rank}J_i-\rho_i^\*\bigr)
-+
-\bigl(\rho_i^\*-\mathrm{rank}M_i(P)\bigr).
-\end{aligned}
+\begin{aligned} \mathrm{nullity}M_i(P) &= \ell_i-\mathrm{rank}M_i(P)\\ &= \bigl(\ell_i-\mathrm{rank}J_i\bigr) + \bigl(\mathrm{rank}J_i-\rho_i^\*\bigr) + \bigl(\rho_i^\*-\mathrm{rank}M_i(P)\bigr). \end{aligned}
 $$
-
 Therefore
 
 $$
-\boxed{
-\mathrm{nullity}M_i(P)
-=
-d_i+\eta_i^\*+e_i(P).
-}
+\boxed{ \mathrm{nullity}M_i(P) = d_i+\eta_i^\*+e_i(P). }
 $$
-
 This gives an exact three-layer decomposition:
 
 ```text
@@ -960,11 +589,8 @@ avoidable candidate-transformation loss
 For a linear $GF(2)$ resource map, the corresponding structural multiplicity is
 
 $$
-\boxed{
-2^{d_i+\eta_i^\*+e_i(P)}.
-}
+\boxed{ 2^{d_i+\eta_i^\*+e_i(P)}. }
 $$
-
 This is structural multiplicity, not cycle latency.
 
 ---
@@ -974,61 +600,37 @@ This is structural multiplicity, not cycle latency.
 For a single access $i$, define
 
 $$
-\rho_i^\*
-=
-\max_{T\in\mathcal T}
-\Phi_i(T)
+\rho_i^\* = \max_{T\in\mathcal T} \Phi_i(T)
 $$
-
 for the declared objective.
 
 The set of transformations that attain this capacity is
 
 $$
-\boxed{
-\mathcal O_i
-=
-\{
-T\in\mathcal T:
-\Phi_i(T)=\rho_i^\*
-\}.
-}
+\boxed{ \mathcal O_i = \{ T\in\mathcal T: \Phi_i(T)=\rho_i^\* \}. }
 $$
-
 By definition,
 
 $$
 \mathcal O_i\neq\varnothing
 $$
-
 for each individually solvable finite instance.
 
 A multi-access problem asks for one shared transformation:
 
 $$
-\boxed{
-T\in\bigcap_i\mathcal O_i.
-}
+\boxed{ T\in\bigcap_i\mathcal O_i. }
 $$
-
 Thus
 
 $$
-\boxed{
-\text{individual capacity}
-\neq
-\text{joint feasibility}.
-}
+\boxed{ \text{individual capacity} \neq \text{joint feasibility}. }
 $$
-
 Each access may have a non-empty optimal set while
 
 $$
-\bigcap_i\mathcal O_i
-=
-\varnothing.
+\bigcap_i\mathcal O_i = \varnothing.
 $$
-
 This is a different kind of obstruction from a single-access capacity ceiling.
 
 ---
@@ -1038,13 +640,8 @@ This is a different kind of obstruction from a single-access capacity ceiling.
 A **local structural obstruction** exists when a desired ideal objective value exceeds the capacity of one access under the declared model:
 
 $$
-\boxed{
-\Phi_{\mathrm{ideal},i}
->
-\mathrm{Cap}_i
-}
+\boxed{ \Phi_{\mathrm{ideal},i} > \mathrm{Cap}_i }
 $$
-
 for a maximization objective.
 
 The obstruction is local because it exists even if the access is optimized alone.
@@ -1065,14 +662,8 @@ The rank-capacity theorem identifies such obstructions exactly for the family $A
 A **shared-transformation obstruction** exists when every access can individually attain its capacity, but no single transformation attains all capacities simultaneously:
 
 $$
-\boxed{
-\mathcal O_i\neq\varnothing
-\quad\forall i,
-\qquad
-\bigcap_i\mathcal O_i=\varnothing.
-}
+\boxed{ \mathcal O_i\neq\varnothing \quad\forall i, \qquad \bigcap_i\mathcal O_i=\varnothing. }
 $$
-
 This is not a failure of any individual access.
 
 It is an incompatibility among requirements imposed on the shared transformation.
@@ -1096,31 +687,21 @@ A subset
 $$
 J\subseteq I
 $$
-
 is an **infeasible core** if
 
 $$
-\bigcap_{j\in J}\mathcal O_j
-=
-\varnothing.
+\bigcap_{j\in J}\mathcal O_j = \varnothing.
 $$
-
 It is **inclusion-minimal** if
 
 $$
-\bigcap_{j\in J}\mathcal O_j
-=
-\varnothing
+\bigcap_{j\in J}\mathcal O_j = \varnothing
 $$
-
 but for every $k\in J$,
 
 $$
-\bigcap_{j\in J\setminus\{k\}}\mathcal O_j
-\neq
-\varnothing.
+\bigcap_{j\in J\setminus\{k\}}\mathcal O_j \neq \varnothing.
 $$
-
 Such a core gives a concise explanation:
 
 > these constraints cannot all be satisfied, but removing any one of them restores feasibility.
@@ -1140,11 +721,8 @@ A strong finite infeasibility artifact can contain:
 3. for every $k\in J$, a witness transformation
 
 $$
-T_k
-\in
-\bigcap_{j\in J\setminus\{k\}}\mathcal O_j.
+T_k \in \bigcap_{j\in J\setminus\{k\}}\mathcal O_j.
 $$
-
 The deletion witnesses prove inclusion minimality independently of the extraction algorithm.
 
 This separates:
@@ -1152,13 +730,11 @@ This separates:
 $$
 \boxed{\text{UNSAT evidence}}
 $$
-
 from
 
 $$
 \boxed{\text{minimality evidence}}.
 $$
-
 Future SAT-backed PMAG models may additionally emit proof objects such as DRAT/LRAT-style certificates when appropriate.
 
 ---
@@ -1174,17 +750,11 @@ For the linear family
 $$
 M_i(X)=A_i+LXR_i,
 $$
-
 two transformation parameters $X$ and $X'$ are observationally equivalent for the declared access family if
 
 $$
-\boxed{
-L(X-X')R_i=0
-\qquad
-\forall i.
-}
+\boxed{ L(X-X')R_i=0 \qquad \forall i. }
 $$
-
 Only the induced action visible through the compositions $LXR_i$ matters.
 
 This is the **transformation visibility quotient**.
@@ -1198,64 +768,42 @@ Let
 $$
 R_i:V_i\rightarrow Y
 $$
-
 be a family of right-side access maps and
 
 $$
 L:Z\rightarrow W
 $$
-
 a fixed left-side hardware projection.
 
 Let
 
 $$
-\boxed{
-U
-=
-\sum_i\mathrm{Im}R_i
-\subseteq Y
-}
+\boxed{ U = \sum_i\mathrm{Im}R_i \subseteq Y }
 $$
-
 be the **active transformation-input subspace**, and let
 
 $$
-\boxed{
-S=\mathrm{Im}L\subseteq W
-}
+\boxed{ S=\mathrm{Im}L\subseteq W }
 $$
-
 be the visible transformation-output subspace.
 
 Then the declared family of effective maps depends on $X:Y\rightarrow Z$ only through the restricted visible map
 
 $$
-\boxed{
-Q
-=
-L\circ X|_U
-:
-U\rightarrow S.
-}
+\boxed{ Q = L\circ X|_U : U\rightarrow S. }
 $$
-
 Moreover, every linear map
 
 $$
 Q:U\rightarrow S
 $$
-
 is realizable by some $X:Y\rightarrow Z$.
 
 Therefore the exact quotient transformation space is
 
 $$
-\boxed{
-\mathrm{Hom}(U,S).
-}
+\boxed{ \mathrm{Hom}(U,S). }
 $$
-
 ## Proof
 
 For every access $i$,
@@ -1263,19 +811,16 @@ For every access $i$,
 $$
 XR_i
 $$
-
 depends only on the restriction of $X$ to
 
 $$
 \mathrm{Im}R_i.
 $$
-
 Across all accesses, only
 
 $$
 X|_U
 $$
-
 can affect any effective map.
 
 Applying $L$ removes every component in
@@ -1283,19 +828,16 @@ Applying $L$ removes every component in
 $$
 \ker L,
 $$
-
 so the observable action is exactly
 
 $$
 Q=L\circ X|_U.
 $$
-
 It remains to show that every
 
 $$
 Q:U\rightarrow S
 $$
-
 can be lifted.
 
 Because
@@ -1303,31 +845,26 @@ Because
 $$
 S=\mathrm{Im}L,
 $$
-
 choose a linear section
 
 $$
 \sigma:S\rightarrow Z
 $$
-
 such that
 
 $$
 L\circ\sigma=\mathrm{id}_S.
 $$
-
 Define on $U$
 
 $$
 X_U=\sigma\circ Q.
 $$
-
 Then
 
 $$
 L\circ X_U=Q.
 $$
-
 Extend $X_U$ arbitrarily from $U$ to all of $Y$.
 
 The resulting $X:Y\rightarrow Z$ realizes the requested $Q$.
@@ -1337,7 +874,6 @@ Therefore all and only maps in
 $$
 \mathrm{Hom}(U,S)
 $$
-
 are observationally distinct. ∎
 
 ---
@@ -1349,57 +885,38 @@ If the field is
 $$
 GF(q),
 $$
-
 and
 
 $$
-u=\dim U,
-\qquad
-s=\dim S,
+u=\dim U, \qquad s=\dim S,
 $$
-
 then
 
 $$
 \mathrm{Hom}(U,S)
 $$
-
 has dimension
 
 $$
 us
 $$
-
 over $GF(q)$.
 
 Therefore the exact number of observationally distinct transformation classes is
 
 $$
-\boxed{
-q^{us}.
-}
+\boxed{ q^{us}. }
 $$
-
 For the 5-bit binary RM-001 CK case,
 
 $$
-q=2,
-\qquad
-u=5,
-\qquad
-s=5,
+q=2, \qquad u=5, \qquad s=5,
 $$
-
 so the quotient contains
 
 $$
-\boxed{
-2^{25}
-=
-33,554,432
-}
+\boxed{ 2^{25} = 33,554,432 }
 $$
-
 candidates.
 
 This explains why exhaustive synthesis is practical in the frozen $n=5$ model.
@@ -1411,45 +928,33 @@ This explains why exhaustive synthesis is practical in the frozen $n=5$ model.
 For RM-001,
 
 $$
-M_i(P)
-=
-B_rR_i+B_cC_i+B_cPR_i.
+M_i(P) = B_rR_i+B_cC_i+B_cPR_i.
 $$
-
 The transformation is visible only through
 
 $$
-\boxed{
-Q=B_cP.
-}
+\boxed{ Q=B_cP. }
 $$
-
 Across a family of accesses, only
 
 $$
 Q|_U
 $$
-
 matters, where
 
 $$
 U=\sum_i\mathrm{Im}R_i.
 $$
-
 Let
 
 $$
 S=\mathrm{Im}B_c.
 $$
-
 Then the exact synthesis object is
 
 $$
-\boxed{
-Q:U\rightarrow S.
-}
+\boxed{ Q:U\rightarrow S. }
 $$
-
 Any degrees of freedom in $P$ outside this quotient are gauge freedom with respect to the declared bank model and access family.
 
 This is why PMAG should distinguish:
@@ -1457,13 +962,11 @@ This is why PMAG should distinguish:
 $$
 \boxed{\text{transformation representation}}
 $$
-
 from
 
 $$
 \boxed{\text{transformation behavior visible to the model}}.
 $$
-
 ---
 
 # 21. Capacity Before Search
@@ -1511,33 +1014,20 @@ Show that no admissible transformation can exceed a declared value.
 For the rank family $A+LXR$, the two universal upper bounds are
 
 $$
-\mathrm{rank}(A+LXR)
-\le
-\mathrm{rank}[A\ L]
+\mathrm{rank}(A+LXR) \le \mathrm{rank}[A\ L]
 $$
-
 and
 
 $$
-\mathrm{rank}(A+LXR)
-\le
-\mathrm{rank}
-\begin{bmatrix}
-A\\
-R
-\end{bmatrix}.
+\mathrm{rank}(A+LXR) \le \mathrm{rank} \begin{bmatrix} A\\ R \end{bmatrix}.
 $$
-
 ## Attainment certificate
 
 Construct or synthesize an $X$ satisfying
 
 $$
-\mathrm{rank}(A+LXR)
-=
-\rho^\*.
+\mathrm{rank}(A+LXR) = \rho^\*.
 $$
-
 Theorem 1 proves that such an $X$ always exists for a single access in this family.
 
 For a concrete finite instance, an explicit matrix $X$ is a direct attainment witness.
@@ -1545,13 +1035,8 @@ For a concrete finite instance, an explicit matrix $X$ is a direct attainment wi
 Thus exact capacity consists of
 
 $$
-\boxed{
-\text{upper bound}
-+
-\text{attainment}.
-}
+\boxed{ \text{upper bound} + \text{attainment}. }
 $$
-
 ---
 
 # 23. Joint Feasibility Certificates
@@ -1561,15 +1046,11 @@ For a feasible multi-access instance, a single transformation
 $$
 T^\*
 $$
-
 with independently recomputable objective values
 
 $$
-\Phi_i(T^\*)=\Phi_i^\*
-\qquad
-\forall i
+\Phi_i(T^\*)=\Phi_i^\* \qquad \forall i
 $$
-
 is a feasibility certificate.
 
 For a finite exact model, this witness should be inexpensive to verify relative to synthesis.
@@ -1577,19 +1058,13 @@ For a finite exact model, this witness should be inexpensive to verify relative 
 For an infeasible instance, the desired evidence is different:
 
 $$
-\boxed{
-\text{UNSAT proof or exhaustive exclusion}
-}
+\boxed{ \text{UNSAT proof or exhaustive exclusion} }
 $$
-
 optionally accompanied by
 
 $$
-\boxed{
-\text{inclusion-minimal core + deletion witnesses}.
-}
+\boxed{ \text{inclusion-minimal core + deletion witnesses}. }
 $$
-
 PMAG should keep witness verification simpler than witness discovery whenever practical.
 
 ---
@@ -1599,17 +1074,13 @@ PMAG should keep witness verification simpler than witness discovery whenever pr
 Suppose the structurally optimal set is
 
 $$
-\mathcal F
-=
-\bigcap_i\mathcal O_i.
+\mathcal F = \bigcap_i\mathcal O_i.
 $$
-
 If
 
 $$
 |\mathcal F|>1,
 $$
-
 the structural objective alone does not identify one implementation.
 
 A secondary cost model
@@ -1617,18 +1088,11 @@ A secondary cost model
 $$
 C_{\mathrm{impl}}:\mathcal F\rightarrow\mathbb R
 $$
-
 can then be optimized:
 
 $$
-\boxed{
-T^\*
-=
-\mathrm{arg\,min}_{T\in\mathcal F}
-C_{\mathrm{impl}}(T).
-}
+\boxed{ T^\* = \mathrm{arg\,min}_{T\in\mathcal F} C_{\mathrm{impl}}(T). }
 $$
-
 This is lexicographic optimization:
 
 1. first satisfy exact structural optimality;
@@ -1649,7 +1113,6 @@ The phrase
 $$
 \Phi_{\mathrm{ideal}}
 $$
-
 requires care.
 
 For example, a bank-only model might treat one distinct bank per execution entity as ideal.
@@ -1681,19 +1144,16 @@ Suppose
 $$
 H_1
 $$
-
 refines
 
 $$
 H_0
 $$
-
 through
 
 $$
 H_0=\pi\circ H_1.
 $$
-
 Then every coarse resource fiber is a union of refined resource fibers.
 
 Thus a collision under $H_0$ may disappear under $H_1$, but two executions separated by $H_0$ cannot become equal under $H_1$ if $\pi$ is a deterministic coarsening of the refined state.
@@ -1711,51 +1171,33 @@ For that reason, hardware refinement and objective refinement should be tracked 
 Theorem 1 solves a specific but important family:
 
 $$
-\boxed{
-\text{linear maps}
-+
-\text{bilinear transformation parameter}
-+
-\text{rank objective}.
-}
+\boxed{ \text{linear maps} + \text{bilinear transformation parameter} + \text{rank objective}. }
 $$
-
 The broader PMAG capacity problem remains open for richer settings, including:
 
 $$
 \text{affine bit-vector},
 $$
-
 $$
 \text{integer affine with carries},
 $$
-
 $$
 \text{piecewise affine},
 $$
-
 $$
 \text{modular maps},
 $$
-
 $$
 \text{transaction formation},
 $$
-
 $$
 \text{cache-set geometry},
 $$
-
 and objectives such as
 
 $$
-\text{transaction count},
-\quad
-\text{arbitration cost},
-\quad
-\text{latency}.
+\text{transaction count}, \quad \text{arbitration cost}, \quad \text{latency}.
 $$
-
 The research question is not whether every such model admits a closed form.
 
 The question is:
@@ -1800,22 +1242,8 @@ RM-001 can now separate four statements cleanly.
 For one access,
 
 $$
-\boxed{
-\rho^\*
-=
-\min
-\left\{
-\mathrm{rank}[B_rR\ \ B_c],
-\;
-\mathrm{rank}
-\begin{bmatrix}
-R\\
-B_cC
-\end{bmatrix}
-\right\}.
-}
+\boxed{ \rho^\* = \min \left\{ \mathrm{rank}[B_rR\ \ B_c], \; \mathrm{rank} \begin{bmatrix} R\\ B_cC \end{bmatrix} \right\}. }
 $$
-
 This is a general algebraic theorem.
 
 ### Verification

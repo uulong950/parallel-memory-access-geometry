@@ -7,17 +7,8 @@ Parallel Memory-Access Geometry (PMAG) studies the structure induced when concur
 The fundamental composition is
 
 $$
-\boxed{
-\text{execution}
-\longrightarrow
-\text{logical state}
-\longrightarrow
-\text{physical address}
-\longrightarrow
-\text{hardware resource}
-}
+\boxed{ \text{execution} \longrightarrow \text{logical state} \longrightarrow \text{physical address} \longrightarrow \text{hardware resource} }
 $$
-
 This document defines the common objects used across PMAG reference models before choosing a particular algebra, architecture, or optimization objective.
 
 It is intentionally more general than RM-001 / Qingming Affine Shear.
@@ -31,15 +22,8 @@ The first reference model specializes these definitions to affine maps over $GF(
 The central separation in PMAG is
 
 $$
-\boxed{
-\text{program semantics}
-\neq
-\text{hardware resource model}
-\neq
-\text{optimization objective}.
-}
+\boxed{ \text{program semantics} \neq \text{hardware resource model} \neq \text{optimization objective}. }
 $$
-
 A useful formulation should allow the same access semantics to be analyzed against different hardware models, and the same hardware model to be optimized under different admissible transformations or objectives.
 
 Without a transformation, the basic composition is
@@ -47,27 +31,21 @@ Without a transformation, the basic composition is
 $$
 E \xrightarrow{A} \mathcal A \xrightarrow{H} R.
 $$
-
 With a semantics-preserving transformation,
 
 $$
-E \xrightarrow{A} \mathcal A
-\xrightarrow{T} \mathcal A'
-\xrightarrow{H} R.
+E \xrightarrow{A} \mathcal A \xrightarrow{T} \mathcal A' \xrightarrow{H} R.
 $$
-
 The effective resource map is therefore
 
 $$
 F=H\circ A
 $$
-
 or
 
 $$
 F_T=H\circ T\circ A.
 $$
-
 The mathematical form of $A$, $T$, and $H$ is model-dependent.
 
 ---
@@ -79,7 +57,6 @@ Let
 $$
 E
 $$
-
 denote an **execution domain**.
 
 An element
@@ -87,7 +64,6 @@ An element
 $$
 e\in E
 $$
-
 represents one participant in a declared simultaneous or phase-related memory access.
 
 Depending on the model, an execution entity may represent a lane, thread, wavefront participant, register element, vector subelement, transaction participant, or another program-defined unit.
@@ -103,7 +79,6 @@ In RM-001,
 $$
 E=GF(2)^\ell.
 $$
-
 Future models may instead use integer lattices, finite bit-vector domains, products with phase labels, or arbitrary finite sets.
 
 ---
@@ -115,7 +90,6 @@ Let
 $$
 L
 $$
-
 denote a **logical coordinate space**.
 
 A logical access map is
@@ -123,7 +97,6 @@ A logical access map is
 $$
 A_L:E\rightarrow L.
 $$
-
 The purpose of $L$ is to describe program-visible or layout-visible coordinates before they are lowered to a physical address.
 
 Examples include
@@ -131,13 +104,11 @@ Examples include
 $$
 (row,column),
 $$
-
 tensor coordinates,
 
 $$
 (tile,row,column),
 $$
-
 register-layout coordinates, or other structured indices.
 
 The logical layer is conceptually useful but not mandatory. A model may map execution entities directly to addresses when a separate logical representation adds no information.
@@ -151,7 +122,6 @@ Let
 $$
 \mathcal A
 $$
-
 denote a **physical or target address space**.
 
 An address realization is a map
@@ -159,15 +129,11 @@ An address realization is a map
 $$
 A_P:L\rightarrow\mathcal A.
 $$
-
 The composed execution-to-address map is
 
 $$
-\boxed{
-A=A_P\circ A_L:E\rightarrow\mathcal A.
-}
+\boxed{ A=A_P\circ A_L:E\rightarrow\mathcal A. }
 $$
-
 Depending on the model, $\mathcal A$ may represent byte addresses, word addresses, shared-memory offsets, scratchpad offsets, cache-line addresses, symbolic bit-vector addresses, or another address-level representation.
 
 ### Model boundary
@@ -179,7 +145,6 @@ For example,
 $$
 base+r\cdot stride+c
 $$
-
 uses integer addition and may introduce carries.
 
 A $GF(2)$ model is exact only when the selected address region and bit extraction make the relevant map affine over $GF(2)$, or when an equivalent exact representation has been proved.
@@ -193,7 +158,6 @@ Let
 $$
 R
 $$
-
 denote a finite **hardware resource space**.
 
 An element
@@ -201,7 +165,6 @@ An element
 $$
 r\in R
 $$
-
 identifies a resource state relevant to the declared contention model.
 
 Examples include:
@@ -219,23 +182,16 @@ The hardware-resource map is
 $$
 H:\mathcal A\rightarrow R.
 $$
-
 The effective execution-to-resource map is therefore
 
 $$
-\boxed{
-F=H\circ A:E\rightarrow R.
-}
+\boxed{ F=H\circ A:E\rightarrow R. }
 $$
-
 With an intervening transformation $T$,
 
 $$
-\boxed{
-F_T=H\circ T\circ A.
-}
+\boxed{ F_T=H\circ T\circ A. }
 $$
-
 This effective map is the primary object of PMAG analysis.
 
 ---
@@ -247,23 +203,16 @@ For a resource state
 $$
 r\in R,
 $$
-
 the **resource fiber** is
 
 $$
-\boxed{
-F^{-1}(r)
-=
-\{e\in E:F(e)=r\}.
-}
+\boxed{F^{-1}(r)=\{e\in E\mid F(e)=r\}}
 $$
-
 Its cardinality
 
 $$
 |F^{-1}(r)|
 $$
-
 is the number of declared concurrent execution entities mapped to that resource state.
 
 The family
@@ -271,17 +220,13 @@ The family
 $$
 \{F^{-1}(r):r\in R\}
 $$
-
 is the **fiber structure** of the access.
 
 The fibers induce an equivalence relation on $E$:
 
 $$
-e_1\sim_F e_2
-\iff
-F(e_1)=F(e_2).
+e_1\sim_F e_2 \iff F(e_1)=F(e_2).
 $$
-
 Thus the resource map partitions the execution domain according to which execution entities are indistinguishable to the selected hardware-resource model.
 
 ---
@@ -291,17 +236,13 @@ Thus the resource map partitions the execution domain according to which executi
 The **reachable resource set** is
 
 $$
-\boxed{
-\mathrm{Reach}(F)=F(E)\subseteq R.
-}
+\boxed{ \mathrm{Reach}(F)=F(E)\subseteq R. }
 $$
-
 Its cardinality
 
 $$
 |\mathrm{Reach}(F)|
 $$
-
 measures how many distinct resource states are exercised by the declared access.
 
 For a linear map
@@ -309,15 +250,9 @@ For a linear map
 $$
 F:GF(2)^\ell\rightarrow GF(2)^b,
 $$
-
 $$
-\boxed{
-|\mathrm{Reach}(F)|
-=
-2^{\mathrm{rank}F}.
-}
+\boxed{ |\mathrm{Reach}(F)| = 2^{\mathrm{rank}F}. }
 $$
-
 In nonlinear models, reachable-resource cardinality remains meaningful even when rank does not.
 
 ---
@@ -329,7 +264,6 @@ Two execution entities are **resource-indistinguishable** when
 $$
 F(e_1)=F(e_2).
 $$
-
 PMAG treats this identification as a loss of execution distinction relative to the selected hardware-resource model.
 
 In a linear model,
@@ -337,7 +271,6 @@ In a linear model,
 $$
 \ker F
 $$
-
 contains the execution directions erased by the map.
 
 More generally, the fiber equivalence relation describes the information discarded by $F$.
@@ -345,11 +278,8 @@ More generally, the fiber equivalence relation describes the information discard
 This gives the first fundamental PMAG question:
 
 $$
-\boxed{
-\text{Which execution distinctions survive the mapping to hardware resources?}
-}
+\boxed{ \text{Which execution distinctions survive the mapping to hardware resources?} }
 $$
-
 The answer depends jointly on access geometry and hardware projection.
 
 ---
@@ -361,32 +291,21 @@ A resource state $r$ is **structurally contended** for the declared access when
 $$
 |F^{-1}(r)|>1.
 $$
-
 A basic contention profile is the multiset
 
 $$
-\boxed{
-\mathcal C(F)
-=
-\{
-|F^{-1}(r)|:
-r\in\mathrm{Reach}(F)
-\}.
-}
+\boxed{ \mathcal C(F) = \{ |F^{-1}(r)|: r\in\mathrm{Reach}(F) \}. }
 $$
-
 Useful derived quantities may include
 
 $$
 \max_{r\in R}|F^{-1}(r)|,
 $$
-
 the maximum structural multiplicity, and
 
 $$
 |\mathrm{Reach}(F)|,
 $$
-
 the reachable resource diversity.
 
 ### Structural contention is not latency
@@ -404,13 +323,11 @@ Let
 $$
 H_0:\mathcal A\rightarrow R_0
 $$
-
 and
 
 $$
 H_1:\mathcal A\rightarrow R_1
 $$
-
 be two hardware-resource models.
 
 We say that $H_1$ **refines** $H_0$ if there exists a map
@@ -418,15 +335,11 @@ We say that $H_1$ **refines** $H_0$ if there exists a map
 $$
 \pi:R_1\rightarrow R_0
 $$
-
 such that
 
 $$
-\boxed{
-H_0=\pi\circ H_1.
-}
+\boxed{ H_0=\pi\circ H_1. }
 $$
-
 Then $H_1$ preserves at least as much resource distinction as $H_0$.
 
 For example,
@@ -434,19 +347,16 @@ For example,
 $$
 H_{\text{bank+phase}}
 $$
-
 may refine
 
 $$
 H_{\text{bank}},
 $$
-
 and
 
 $$
 H_{\text{bank+phase+tag}}
 $$
-
 may refine both.
 
 This provides a formal language for moving from coarse structural models toward richer microarchitectural models.
@@ -460,7 +370,6 @@ Let
 $$
 \mathcal T
 $$
-
 be a family of transformations acting on logical coordinates, storage coordinates, physical addresses, or layout states.
 
 A transformation
@@ -468,7 +377,6 @@ A transformation
 $$
 T\in\mathcal T
 $$
-
 is **admissible** only if it preserves the declared program semantics.
 
 The exact preservation condition is frontend- and model-dependent.
@@ -478,11 +386,8 @@ Typical examples include transformations that alter storage layout while preserv
 For a given access $A$,
 
 $$
-\boxed{
-F_T=H\circ T\circ A
-}
+\boxed{ F_T=H\circ T\circ A }
 $$
-
 is the transformed effective resource map.
 
 PMAG studies how resource geometry varies as $T$ ranges over the admissible family.
@@ -496,23 +401,19 @@ An **objective functional**
 $$
 \Phi
 $$
-
 assigns a quality or cost to an effective resource map:
 
 $$
 \Phi(F).
 $$
-
 Examples include
 
 $$
 \Phi(F)=|\mathrm{Reach}(F)|,
 $$
-
 $$
 \Phi(F)=-\max_r|F^{-1}(r)|,
 $$
-
 transaction count, arbitration cost, predicted latency, or measured throughput.
 
 The optimization direction must be declared explicitly.
@@ -520,25 +421,13 @@ The optimization direction must be declared explicitly.
 For a maximization objective,
 
 $$
-\boxed{
-\Phi^\*
-=
-\max_{T\in\mathcal T}
-\Phi(H\circ T\circ A).
-}
+\boxed{ \Phi^\* = \max_{T\in\mathcal T} \Phi(H\circ T\circ A). }
 $$
-
 For a minimization objective,
 
 $$
-\boxed{
-\Phi^\*
-=
-\min_{T\in\mathcal T}
-\Phi(H\circ T\circ A).
-}
+\boxed{ \Phi^\* = \min_{T\in\mathcal T} \Phi(H\circ T\circ A). }
 $$
-
 Different objective levels need not induce the same ordering over transformations.
 
 A transformation that maximizes resource diversity need not minimize exact hardware latency.
@@ -552,25 +441,13 @@ Given an access map $A$, hardware model $H$, transformation family $\mathcal T$,
 For a maximization problem,
 
 $$
-\boxed{
-\mathrm{Cap}(A,H,\mathcal T,\Phi)
-=
-\max_{T\in\mathcal T}
-\Phi(H\circ T\circ A).
-}
+\boxed{ \mathrm{Cap}(A,H,\mathcal T,\Phi) = \max_{T\in\mathcal T} \Phi(H\circ T\circ A). }
 $$
-
 For a minimization problem,
 
 $$
-\boxed{
-\mathrm{Cap}(A,H,\mathcal T,\Phi)
-=
-\min_{T\in\mathcal T}
-\Phi(H\circ T\circ A).
-}
+\boxed{ \mathrm{Cap}(A,H,\mathcal T,\Phi) = \min_{T\in\mathcal T} \Phi(H\circ T\circ A). }
 $$
-
 Capacity is always relative to the model boundary.
 
 Therefore the phrase **optimal layout** is incomplete unless the access set, hardware model, admissible transformations, and objective are also specified.
@@ -584,13 +461,11 @@ Suppose an objective has an ideal value
 $$
 \Phi_{\mathrm{ideal}}
 $$
-
 and the declared transformation family has capacity
 
 $$
 \Phi^\*.
 $$
-
 The gap between the ideal and $\Phi^\*$ is **unavoidable within the declared model and transformation family**.
 
 For a candidate $T$, the gap between $\Phi^\*$ and $\Phi(F_T)$ is **avoidable transformation loss**.
@@ -598,15 +473,8 @@ For a candidate $T$, the gap between $\Phi^\*$ and $\Phi(F_T)$ is **avoidable tr
 Conceptually,
 
 $$
-\boxed{
-\text{observed structural loss}
-=
-\text{unavoidable loss}
-+
-\text{avoidable transformation loss},
-}
+\boxed{ \text{observed structural loss} = \text{unavoidable loss} + \text{avoidable transformation loss}, }
 $$
-
 when the chosen objective admits such a decomposition.
 
 RM-001 realizes this idea algebraically through access-intrinsic nullity, hardware/shear-family unavoidable loss, and candidate-specific avoidable rank loss.
@@ -620,33 +488,26 @@ A **multi-access instance** is a family
 $$
 \mathcal A=\{A_i\}_{i\in I}
 $$
-
 of access maps that must share one transformation
 
 $$
 T\in\mathcal T.
 $$
-
 Each access may have its own effective resource map
 
 $$
 F_{i,T}=H_i\circ T\circ A_i
 $$
-
 and its own objective
 
 $$
 \Phi_i.
 $$
-
 A common requirement is for every access to reach its individual capacity:
 
 $$
-\Phi_i(F_{i,T})=\Phi_i^\*
-\qquad
-\forall i\in I.
+\Phi_i(F_{i,T})=\Phi_i^\* \qquad \forall i\in I.
 $$
-
 The transformation is shared; the constraints are per access.
 
 This distinction is central because individually optimal transformations need not be jointly compatible.
@@ -658,33 +519,18 @@ This distinction is central because individually optimal transformations need no
 For a multi-access instance, define the individually optimal transformation set
 
 $$
-\mathcal O_i
-=
-\left\{
-T\in\mathcal T:
-\Phi_i(F_{i,T})=\Phi_i^\*
-\right\}.
+\mathcal O_i = \left\{ T\in\mathcal T: \Phi_i(F_{i,T})=\Phi_i^\* \right\}.
 $$
-
 The instance is **jointly feasible** when
 
 $$
-\boxed{
-\bigcap_{i\in I}\mathcal O_i
-\neq\varnothing.
-}
+\boxed{ \bigcap_{i\in I}\mathcal O_i \neq\varnothing. }
 $$
-
 It is **infeasible** when
 
 $$
-\boxed{
-\bigcap_{i\in I}\mathcal O_i
-=
-\varnothing.
-}
+\boxed{ \bigcap_{i\in I}\mathcal O_i = \varnothing. }
 $$
-
 This separates two questions:
 
 1. what is the optimum for each access individually?
@@ -701,19 +547,13 @@ A **synthesis procedure** constructs a transformation
 $$
 T^\*\in\mathcal T
 $$
-
 satisfying a declared optimality or feasibility criterion.
 
 For exact simultaneous synthesis, the target is
 
 $$
-\boxed{
-T^\*
-\in
-\bigcap_{i\in I}\mathcal O_i.
-}
+\boxed{ T^\* \in \bigcap_{i\in I}\mathcal O_i. }
 $$
-
 A synthesizer may return:
 
 - one witness;
@@ -734,7 +574,6 @@ A subset
 $$
 J\subseteq I
 $$
-
 is an **infeasible core** if the restricted constraints remain infeasible.
 
 It is **inclusion-minimal** if $J$ is infeasible but
@@ -742,7 +581,6 @@ It is **inclusion-minimal** if $J$ is infeasible but
 $$
 J\setminus\{j\}
 $$
-
 is feasible for every $j\in J$.
 
 Such a core explains which accesses form a minimal obstruction under set inclusion.
@@ -760,7 +598,6 @@ Let
 $$
 C_{\mathrm{impl}}(T)
 $$
-
 be a declared implementation-cost model for a transformation.
 
 Examples include abstract gate count, instruction count, dependency depth, register pressure, code size, or a target-specific latency estimate.
@@ -768,12 +605,8 @@ Examples include abstract gate count, instruction count, dependency depth, regis
 After structural feasibility has been established, a secondary optimization problem is
 
 $$
-\boxed{
-\min_{T\in\mathcal F}
-C_{\mathrm{impl}}(T),
-}
+\boxed{ \min_{T\in\mathcal F} C_{\mathrm{impl}}(T), }
 $$
-
 where $\mathcal F$ is the structurally feasible or structurally optimal transformation set.
 
 This separates
@@ -781,13 +614,11 @@ This separates
 $$
 \boxed{\text{structural optimality}}
 $$
-
 from
 
 $$
 \boxed{\text{implementation optimality}}.
 $$
-
 RM-001 gives an exact implementation-cost result only for its explicitly declared 5-bit linear-circuit grammar.
 
 ---
@@ -818,11 +649,8 @@ Every PMAG result is relative to a declared model boundary.
 A model boundary should state at least
 
 $$
-\boxed{
-(E,\;A,\;H,\;\mathcal T,\;\Phi)
-}
+\boxed{ (E,\;A,\;H,\;\mathcal T,\;\Phi) }
 $$
-
 together with any simultaneity, phase, address-width, vector-width, broadcast, transaction, or architecture assumptions required by the result.
 
 Claims outside that boundary must be separately established.
@@ -832,13 +660,11 @@ This is especially important when moving from
 $$
 \text{structural contention}
 $$
-
 to
 
 $$
 \text{latency / throughput}.
 $$
-
 ---
 
 # 23. The Four Fundamental PMAG Problems
@@ -852,7 +678,6 @@ Given
 $$
 F=H\circ A,
 $$
-
 determine which execution distinctions survive the mapping.
 
 Possible outputs include reachable-resource count, fiber partition, kernel, image, quotient structure, and information-loss invariants.
@@ -866,7 +691,6 @@ Given
 $$
 F:E\rightarrow R,
 $$
-
 characterize the collision structure of the resource fibers.
 
 Possible outputs include maximum fiber size, fiber-size distribution, number of distinct resource states, collision classes, transaction grouping, and arbitration classes.
@@ -876,7 +700,6 @@ In RM-001, equal-size linear fibers give exact multiplicity
 $$
 2^{\mathrm{nullity}F}.
 $$
-
 ## Problem III — Transformation
 
 Given an admissible family
@@ -884,13 +707,11 @@ Given an admissible family
 $$
 \mathcal T,
 $$
-
 characterize how resource geometry varies under
 
 $$
 F_T=H\circ T\circ A.
 $$
-
 Possible questions include invariants under all $T$, maximum achievable resource diversity, unavoidable collision subspaces, equivalence classes of transformations, quotient search spaces, and structural obstructions.
 
 In RM-001, the family is an affine shear parameterized by a binary matrix $P$.
@@ -939,69 +760,29 @@ PMAG models may be refined along several independent axes.
 ## Access-language refinement
 
 $$
-GF(2)
-\rightarrow
-\text{affine bit-vector}
-\rightarrow
-\mathbb Z\text{-affine}
-\rightarrow
-\text{piecewise affine}
-\rightarrow
-\text{nonlinear / modular}.
+GF(2) \rightarrow \text{affine bit-vector} \rightarrow \mathbb Z\text{-affine} \rightarrow \text{piecewise affine} \rightarrow \text{nonlinear / modular}.
 $$
-
 A refinement should preserve exactness where possible and clearly identify where a previously exact theorem becomes only a bound, approximation, or local statement.
 
 ## Hardware refinement
 
 $$
-\text{bank}
-\rightarrow
-\text{bank+phase}
-\rightarrow
-\text{bank+port}
-\rightarrow
-\text{transaction}
-\rightarrow
-\text{cache}
-\rightarrow
-\text{channel}.
+\text{bank} \rightarrow \text{bank+phase} \rightarrow \text{bank+port} \rightarrow \text{transaction} \rightarrow \text{cache} \rightarrow \text{channel}.
 $$
-
 A refined resource model may split collisions that appear identical under a coarser model.
 
 ## Objective refinement
 
 $$
-\text{information}
-\rightarrow
-\text{collision multiplicity}
-\rightarrow
-\text{transaction count}
-\rightarrow
-\text{arbitration}
-\rightarrow
-\text{latency / throughput}.
+\text{information} \rightarrow \text{collision multiplicity} \rightarrow \text{transaction count} \rightarrow \text{arbitration} \rightarrow \text{latency / throughput}.
 $$
-
 A richer objective generally requires a richer hardware model.
 
 ## Transformation refinement
 
 $$
-\text{shear}
-\rightarrow
-\text{general linear}
-\rightarrow
-\text{permutation}
-\rightarrow
-\text{padding}
-\rightarrow
-\text{tiling}
-\rightarrow
-\text{compound layout transformation}.
+\text{shear} \rightarrow \text{general linear} \rightarrow \text{permutation} \rightarrow \text{padding} \rightarrow \text{tiling} \rightarrow \text{compound layout transformation}.
 $$
-
 Expanding the transformation family can increase capacity, but may also enlarge synthesis and implementation complexity.
 
 ---
@@ -1069,41 +850,31 @@ RM-001 specializes the general PMAG objects as follows.
 $$
 E=GF(2)^\ell.
 $$
-
 ### Logical coordinates
 
 $$
 (r,c)\in GF(2)^p\times GF(2)^q.
 $$
-
 ### Access
 
 $$
-r(t)=Rt+r_0,
-\qquad
-c(t)=Ct+c_0.
+r(t)=Rt+r_0, \qquad c(t)=Ct+c_0.
 $$
-
 ### Transformation
 
 $$
 S_P(r,c)=(r,c+Pr).
 $$
-
 ### Hardware resource map
 
 $$
 h(r,c)=B_rr+B_cc+b_0.
 $$
-
 ### Effective map
 
 $$
-\boxed{
-M(P)=B_rR+B_cC+B_cPR.
-}
+\boxed{ M(P)=B_rR+B_cC+B_cPR. }
 $$
-
 ### Structural objective
 
 Maximize
@@ -1111,23 +882,18 @@ Maximize
 $$
 \mathrm{rank}M(P).
 $$
-
 ### Collision interpretation
 
 For linear $M$,
 
 $$
-|\mathrm{Im}M|
-=
-2^{\mathrm{rank}M},
+|\mathrm{Im}M| = 2^{\mathrm{rank}M},
 $$
-
 and each reachable resource has
 
 $$
 2^{\ell-\mathrm{rank}M}
 $$
-
 preimages.
 
 ### Synthesis
@@ -1145,7 +911,6 @@ Minimize exact gate count under the declared 5-bit
 $$
 \{SHL,SHR,AND,XOR\}
 $$
-
 linear-circuit grammar.
 
 This specialization demonstrates that the general PMAG pipeline can be made exact for a non-trivial GPU-relevant instance.
@@ -1260,17 +1025,8 @@ At present, the strongest complete executable instance is RM-001:
 **Qingming Affine Shear**
 
 $$
-\boxed{
-\text{Affine }GF(2)
-+
-\text{linear bank projection}
-+
-\text{rank objective}
-+
-\text{exact multi-access synthesis}.
-}
+\boxed{ \text{Affine }GF(2) + \text{linear bank projection} + \text{rank objective} + \text{exact multi-access synthesis}. }
 $$
-
 The next foundational work should strengthen the common theory while keeping model boundaries explicit.
 
 Candidate next steps include:
