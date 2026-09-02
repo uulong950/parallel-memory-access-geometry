@@ -53,7 +53,7 @@ For a maximization objective, define
 
 $$
 \boxed{
-\operatorname{Cap}(A,H,\mathcal T,\Phi)
+\mathrm{Cap}(A,H,\mathcal T,\Phi)
 =
 \max_{T\in\mathcal T}
 \Phi(H\circ T\circ A).
@@ -64,7 +64,7 @@ For a minimization objective,
 
 $$
 \boxed{
-\operatorname{Cap}(A,H,\mathcal T,\Phi)
+\mathrm{Cap}(A,H,\mathcal T,\Phi)
 =
 \min_{T\in\mathcal T}
 \Phi(H\circ T\circ A).
@@ -102,7 +102,7 @@ and
 $$
 \Phi^\*
 =
-\operatorname{Cap}(A,H,\mathcal T,\Phi).
+\mathrm{Cap}(A,H,\mathcal T,\Phi).
 $$
 
 Then
@@ -173,7 +173,7 @@ The PMAG rank-capacity problem is
 
 $$
 \boxed{
-\max_X \operatorname{rank}(A+LXR).
+\max_X \mathrm{rank}(A+LXR).
 }
 $$
 
@@ -201,7 +201,7 @@ Then
 $$
 \boxed{
 \max_X
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 X&A\\
 B&C
@@ -209,9 +209,9 @@ B&C
 =
 \min
 \left\{
-p+\operatorname{rank}[B\ C],
+p+\mathrm{rank}[B\ C],
 \;
-q+\operatorname{rank}
+q+\mathrm{rank}
 \begin{bmatrix}
 A\\
 C
@@ -227,17 +227,17 @@ The two upper bounds are immediate.
 The top $p$ rows can increase the rank of the fixed bottom block by at most $p$, so
 
 $$
-\operatorname{rank}\mathcal M(X)
+\mathrm{rank}\mathcal M(X)
 \le
-p+\operatorname{rank}[B\ C].
+p+\mathrm{rank}[B\ C].
 $$
 
 Likewise, the left $q$ columns can increase the rank of the fixed right block by at most $q$, so
 
 $$
-\operatorname{rank}\mathcal M(X)
+\mathrm{rank}\mathcal M(X)
 \le
-q+\operatorname{rank}
+q+\mathrm{rank}
 \begin{bmatrix}
 A\\
 C
@@ -249,7 +249,7 @@ It remains to show that the smaller bound can always be attained.
 Let
 
 $$
-c=\operatorname{rank}C.
+c=\mathrm{rank}C.
 $$
 
 Using invertible row operations on the bottom block and invertible column operations on the right block, reduce $C$ to
@@ -280,9 +280,9 @@ with $X'$ still arbitrary.
 Let
 
 $$
-a=\operatorname{rank}A_0,
+a=\mathrm{rank}A_0,
 \qquad
-b=\operatorname{rank}B_0.
+b=\mathrm{rank}B_0.
 $$
 
 By further invertible operations confined to the corresponding row and column groups, reduce $A_0$ and $B_0$ to identity blocks of ranks $a$ and $b$.
@@ -310,7 +310,7 @@ $$
 Hence
 
 $$
-\max_X\operatorname{rank}\mathcal M(X)
+\max_X\mathrm{rank}\mathcal M(X)
 =
 c+a+b+\min(p-a,q-b).
 $$
@@ -318,7 +318,7 @@ $$
 Now
 
 $$
-\operatorname{rank}[B\ C]
+\mathrm{rank}[B\ C]
 =
 c+b
 $$
@@ -326,7 +326,7 @@ $$
 and
 
 $$
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 A\\
 C
@@ -348,9 +348,9 @@ which is exactly
 $$
 \min
 \left\{
-p+\operatorname{rank}[B\ C],
+p+\mathrm{rank}[B\ C],
 \;
-q+\operatorname{rank}
+q+\mathrm{rank}
 \begin{bmatrix}
 A\\
 C
@@ -369,13 +369,13 @@ For linear maps over any field $\mathbb F$,
 $$
 \boxed{
 \max_X
-\operatorname{rank}(A+LXR)
+\mathrm{rank}(A+LXR)
 =
 \min
 \left\{
-\operatorname{rank}[A\ L],
+\mathrm{rank}[A\ L],
 \;
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 A\\
 R
@@ -391,9 +391,9 @@ This is the basic single-access capacity theorem for the linear PMAG family $A+L
 Let
 
 $$
-\ell=\operatorname{rank}L,
+\ell=\mathrm{rank}L,
 \qquad
-r=\operatorname{rank}R.
+r=\mathrm{rank}R.
 $$
 
 Choose invertible basis changes so that
@@ -474,13 +474,13 @@ Undoing the invertible basis changes gives
 $$
 \boxed{
 \max_X
-\operatorname{rank}(A+LXR)
+\mathrm{rank}(A+LXR)
 =
 \min
 \left\{
-\operatorname{rank}[A\ L],
+\mathrm{rank}[A\ L],
 \;
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 A\\
 R
@@ -502,7 +502,7 @@ Define
 $$
 \rho_{\mathrm{out}}
 =
-\operatorname{rank}[A\ L]
+\mathrm{rank}[A\ L]
 $$
 
 and
@@ -510,7 +510,7 @@ and
 $$
 \rho_{\mathrm{in}}
 =
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 A\\
 R
@@ -532,15 +532,15 @@ $$
 Because
 
 $$
-\operatorname{Im}(A+LXR)
+\mathrm{Im}(A+LXR)
 \subseteq
-\operatorname{Im}A+\operatorname{Im}L,
+\mathrm{Im}A+\mathrm{Im}L,
 $$
 
 the effective map cannot use resource directions outside
 
 $$
-\operatorname{Im}A+\operatorname{Im}L.
+\mathrm{Im}A+\mathrm{Im}L.
 $$
 
 Therefore
@@ -548,7 +548,7 @@ Therefore
 $$
 \rho_{\mathrm{out}}
 =
-\dim(\operatorname{Im}A+\operatorname{Im}L)
+\dim(\mathrm{Im}A+\mathrm{Im}L)
 $$
 
 is an output-resource span ceiling.
@@ -576,7 +576,7 @@ is an unavoidable kernel.
 Since
 
 $$
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 A\\
 R
@@ -616,20 +616,20 @@ $$
 Then
 
 $$
-\operatorname{rank}[C\ I]=n
+\mathrm{rank}[C\ I]=n
 $$
 
 in the square $n$-dimensional output case, and Theorem 1 gives
 
 $$
 \boxed{
-\max_P\operatorname{rank}(C+PR)
+\max_P \mathrm{rank}(C+PR)
 =
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
-C\\
+C \\
 R
-\end{bmatrix}.
+\end{bmatrix}
 }
 $$
 
@@ -637,9 +637,9 @@ Equivalently,
 
 $$
 \boxed{
-\max_P\operatorname{rank}(C+PR)
+\max_P \mathrm{rank}(C+PR)
 =
-n-\dim(\ker C\cap\ker R).
+n-\dim(\ker C\cap\ker R)
 }
 $$
 
@@ -676,13 +676,13 @@ $$
 Theorem 1 gives
 
 $$
-\max_P\operatorname{rank}M(P)
+\max_P\mathrm{rank}M(P)
 =
 \min
 \left\{
-\operatorname{rank}[B_rR+B_cC\ \ B_c],
+\mathrm{rank}[B_rR+B_cC\ \ B_c],
 \;
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 B_rR+B_cC\\
 R
@@ -693,21 +693,21 @@ $$
 The first term simplifies because the columns of $B_cC$ already lie in the column span of $B_c$:
 
 $$
-\operatorname{rank}[B_rR+B_cC\ \ B_c]
+\mathrm{rank}[B_rR+B_cC\ \ B_c]
 =
-\operatorname{rank}[B_rR\ \ B_c].
+\mathrm{rank}[B_rR\ \ B_c].
 $$
 
 The second term simplifies by subtracting $B_r$ times the lower block $R$ from the upper block:
 
 $$
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 B_rR+B_cC\\
 R
 \end{bmatrix}
 =
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 B_cC\\
 R
@@ -720,13 +720,13 @@ $$
 \boxed{
 \rho^\*
 =
-\max_P\operatorname{rank}M(P)
+\max_P\mathrm{rank}M(P)
 =
 \min
 \left\{
-\operatorname{rank}[B_rR\ \ B_c],
+\mathrm{rank}[B_rR\ \ B_c],
 \;
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 R\\
 B_cC
@@ -752,13 +752,13 @@ Define
 $$
 S_{\mathrm{out}}
 =
-\operatorname{Im}(B_rR)+\operatorname{Im}(B_c).
+\mathrm{Im}(B_rR)+\mathrm{Im}(B_c).
 $$
 
 For every $P$,
 
 $$
-\operatorname{Im}M(P)
+\mathrm{Im}M(P)
 \subseteq
 S_{\mathrm{out}}.
 $$
@@ -767,11 +767,11 @@ Therefore
 
 $$
 \boxed{
-\operatorname{rank}M(P)
+\mathrm{rank}M(P)
 \le
 \dim S_{\mathrm{out}}
 =
-\operatorname{rank}[B_rR\ \ B_c].
+\mathrm{rank}[B_rR\ \ B_c].
 }
 $$
 
@@ -832,7 +832,7 @@ $$
 Moreover,
 
 $$
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 R\\
 B_cC
@@ -885,7 +885,7 @@ $$
 \boxed{
 d_i
 =
-\ell_i-\operatorname{rank}J_i.
+\ell_i-\mathrm{rank}J_i.
 }
 $$
 
@@ -896,7 +896,7 @@ Let
 $$
 \rho_i^\*
 =
-\max_P\operatorname{rank}M_i(P)
+\max_P\mathrm{rank}M_i(P)
 $$
 
 be the exact hardware/shear-family capacity.
@@ -907,7 +907,7 @@ $$
 \boxed{
 \eta_i^\*
 =
-\operatorname{rank}J_i-\rho_i^\*.
+\mathrm{rank}J_i-\rho_i^\*.
 }
 $$
 
@@ -917,7 +917,7 @@ $$
 \boxed{
 e_i(P)
 =
-\rho_i^\*-\operatorname{rank}M_i(P).
+\rho_i^\*-\mathrm{rank}M_i(P).
 }
 $$
 
@@ -925,15 +925,15 @@ Then
 
 $$
 \begin{aligned}
-\operatorname{nullity}M_i(P)
+\mathrm{nullity}M_i(P)
 &=
-\ell_i-\operatorname{rank}M_i(P)\\
+\ell_i-\mathrm{rank}M_i(P)\\
 &=
-\bigl(\ell_i-\operatorname{rank}J_i\bigr)
+\bigl(\ell_i-\mathrm{rank}J_i\bigr)
 +
-\bigl(\operatorname{rank}J_i-\rho_i^\*\bigr)
+\bigl(\mathrm{rank}J_i-\rho_i^\*\bigr)
 +
-\bigl(\rho_i^\*-\operatorname{rank}M_i(P)\bigr).
+\bigl(\rho_i^\*-\mathrm{rank}M_i(P)\bigr).
 \end{aligned}
 $$
 
@@ -941,7 +941,7 @@ Therefore
 
 $$
 \boxed{
-\operatorname{nullity}M_i(P)
+\mathrm{nullity}M_i(P)
 =
 d_i+\eta_i^\*+e_i(P).
 }
@@ -1041,7 +1041,7 @@ $$
 \boxed{
 \Phi_{\mathrm{ideal},i}
 >
-\operatorname{Cap}_i
+\mathrm{Cap}_i
 }
 $$
 
@@ -1213,7 +1213,7 @@ $$
 \boxed{
 U
 =
-\sum_i\operatorname{Im}R_i
+\sum_i\mathrm{Im}R_i
 \subseteq Y
 }
 $$
@@ -1222,7 +1222,7 @@ be the **active transformation-input subspace**, and let
 
 $$
 \boxed{
-S=\operatorname{Im}L\subseteq W
+S=\mathrm{Im}L\subseteq W
 }
 $$
 
@@ -1252,7 +1252,7 @@ Therefore the exact quotient transformation space is
 
 $$
 \boxed{
-\operatorname{Hom}(U,S).
+\mathrm{Hom}(U,S).
 }
 $$
 
@@ -1267,7 +1267,7 @@ $$
 depends only on the restriction of $X$ to
 
 $$
-\operatorname{Im}R_i.
+\mathrm{Im}R_i.
 $$
 
 Across all accesses, only
@@ -1301,7 +1301,7 @@ can be lifted.
 Because
 
 $$
-S=\operatorname{Im}L,
+S=\mathrm{Im}L,
 $$
 
 choose a linear section
@@ -1313,7 +1313,7 @@ $$
 such that
 
 $$
-L\circ\sigma=\operatorname{id}_S.
+L\circ\sigma=\mathrm{id}_S.
 $$
 
 Define on $U$
@@ -1335,7 +1335,7 @@ The resulting $X:Y\rightarrow Z$ realizes the requested $Q$.
 Therefore all and only maps in
 
 $$
-\operatorname{Hom}(U,S)
+\mathrm{Hom}(U,S)
 $$
 
 are observationally distinct. ∎
@@ -1361,7 +1361,7 @@ $$
 then
 
 $$
-\operatorname{Hom}(U,S)
+\mathrm{Hom}(U,S)
 $$
 
 has dimension
@@ -1433,13 +1433,13 @@ $$
 matters, where
 
 $$
-U=\sum_i\operatorname{Im}R_i.
+U=\sum_i\mathrm{Im}R_i.
 $$
 
 Let
 
 $$
-S=\operatorname{Im}B_c.
+S=\mathrm{Im}B_c.
 $$
 
 Then the exact synthesis object is
@@ -1511,17 +1511,17 @@ Show that no admissible transformation can exceed a declared value.
 For the rank family $A+LXR$, the two universal upper bounds are
 
 $$
-\operatorname{rank}(A+LXR)
+\mathrm{rank}(A+LXR)
 \le
-\operatorname{rank}[A\ L]
+\mathrm{rank}[A\ L]
 $$
 
 and
 
 $$
-\operatorname{rank}(A+LXR)
+\mathrm{rank}(A+LXR)
 \le
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 A\\
 R
@@ -1533,7 +1533,7 @@ $$
 Construct or synthesize an $X$ satisfying
 
 $$
-\operatorname{rank}(A+LXR)
+\mathrm{rank}(A+LXR)
 =
 \rho^\*.
 $$
@@ -1624,7 +1624,7 @@ $$
 \boxed{
 T^\*
 =
-\arg\min_{T\in\mathcal F}
+\mathrm{arg\,min}_{T\in\mathcal F}
 C_{\mathrm{impl}}(T).
 }
 $$
@@ -1805,9 +1805,9 @@ $$
 =
 \min
 \left\{
-\operatorname{rank}[B_rR\ \ B_c],
+\mathrm{rank}[B_rR\ \ B_c],
 \;
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 R\\
 B_cC

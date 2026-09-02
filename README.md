@@ -59,7 +59,7 @@ we want to characterize what information about the execution domain $E$ remains 
 In linear models this leads naturally to
 
 $$
-\operatorname{rank}F,\qquad \ker F,\qquad \operatorname{Im}F.
+\mathrm{rank}F,\qquad \ker F,\qquad \mathrm{Im}F.
 $$
 
 In more general models the corresponding objects may be fibers, equivalence classes, partitions, reachable resource states, or other structural invariants.
@@ -398,7 +398,7 @@ the number of reachable resource states is
 
 $$
 \boxed{
-2^{\operatorname{rank}M}
+2^{\mathrm{rank}M}
 }
 $$
 
@@ -406,7 +406,7 @@ and every reachable resource state has exactly
 
 $$
 \boxed{
-2^{\ell-\operatorname{rank}M}
+2^{\ell-\mathrm{rank}M}
 }
 $$
 
@@ -430,11 +430,11 @@ In the square $n$-dimensional case,
 
 $$
 \boxed{
-\max_P\operatorname{rank}(C+PR)
+\max_P \mathrm{rank}(C+PR)
 =
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
-R\\
+R \\
 C
 \end{bmatrix}
 }
@@ -444,9 +444,9 @@ or equivalently,
 
 $$
 \boxed{
-\max_P\operatorname{rank}(C+PR)
+\max_P \mathrm{rank}(C+PR)
 =
-n-\dim(\ker R\cap\ker C).
+n-\dim(\ker R\cap\ker C)
 }
 $$
 
@@ -468,12 +468,12 @@ $$
 =
 \min
 \left\{
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 B_rR & B_c
 \end{bmatrix},
 \;
-\operatorname{rank}
+\mathrm{rank}
 \begin{bmatrix}
 R\\
 B_cC
@@ -498,7 +498,7 @@ For canonical access $i$, define
 
 $$
 L_i=
-\operatorname{Im}
+\mathrm{Im}
 \begin{bmatrix}
 R_i\\
 C_i
@@ -575,7 +575,7 @@ For the current CK transformation,
 
 $$
 \boxed{
-\operatorname{cost}=4
+\mathrm{cost}=4
 }
 $$
 

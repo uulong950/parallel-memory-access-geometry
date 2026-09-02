@@ -292,14 +292,14 @@ The **reachable resource set** is
 
 $$
 \boxed{
-\operatorname{Reach}(F)=F(E)\subseteq R.
+\mathrm{Reach}(F)=F(E)\subseteq R.
 }
 $$
 
 Its cardinality
 
 $$
-|\operatorname{Reach}(F)|
+|\mathrm{Reach}(F)|
 $$
 
 measures how many distinct resource states are exercised by the declared access.
@@ -312,9 +312,9 @@ $$
 
 $$
 \boxed{
-|\operatorname{Reach}(F)|
+|\mathrm{Reach}(F)|
 =
-2^{\operatorname{rank}F}.
+2^{\mathrm{rank}F}.
 }
 $$
 
@@ -370,7 +370,7 @@ $$
 =
 \{
 |F^{-1}(r)|:
-r\in\operatorname{Reach}(F)
+r\in\mathrm{Reach}(F)
 \}.
 }
 $$
@@ -384,7 +384,7 @@ $$
 the maximum structural multiplicity, and
 
 $$
-|\operatorname{Reach}(F)|,
+|\mathrm{Reach}(F)|,
 $$
 
 the reachable resource diversity.
@@ -506,7 +506,7 @@ $$
 Examples include
 
 $$
-\Phi(F)=|\operatorname{Reach}(F)|,
+\Phi(F)=|\mathrm{Reach}(F)|,
 $$
 
 $$
@@ -553,7 +553,7 @@ For a maximization problem,
 
 $$
 \boxed{
-\operatorname{Cap}(A,H,\mathcal T,\Phi)
+\mathrm{Cap}(A,H,\mathcal T,\Phi)
 =
 \max_{T\in\mathcal T}
 \Phi(H\circ T\circ A).
@@ -564,7 +564,7 @@ For a minimization problem,
 
 $$
 \boxed{
-\operatorname{Cap}(A,H,\mathcal T,\Phi)
+\mathrm{Cap}(A,H,\mathcal T,\Phi)
 =
 \min_{T\in\mathcal T}
 \Phi(H\circ T\circ A).
@@ -874,7 +874,7 @@ Possible outputs include maximum fiber size, fiber-size distribution, number of 
 In RM-001, equal-size linear fibers give exact multiplicity
 
 $$
-2^{\operatorname{nullity}F}.
+2^{\mathrm{nullity}F}.
 $$
 
 ## Problem III — Transformation
@@ -1109,7 +1109,7 @@ $$
 Maximize
 
 $$
-\operatorname{rank}M(P).
+\mathrm{rank}M(P).
 $$
 
 ### Collision interpretation
@@ -1117,15 +1117,15 @@ $$
 For linear $M$,
 
 $$
-|\operatorname{Im}M|
+|\mathrm{Im}M|
 =
-2^{\operatorname{rank}M},
+2^{\mathrm{rank}M},
 $$
 
 and each reachable resource has
 
 $$
-2^{\ell-\operatorname{rank}M}
+2^{\ell-\mathrm{rank}M}
 $$
 
 preimages.
