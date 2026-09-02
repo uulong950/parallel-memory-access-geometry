@@ -6,9 +6,7 @@
 
 The basic object is
 
-$$
-\boxed{ \text{execution} \longrightarrow \text{logical coordinates} \longrightarrow \text{physical addresses} \longrightarrow \text{hardware resources} }
-$$
+> **execution → logical coordinates → physical addresses → hardware resources**
 Examples of execution entities include lanes, threads, wavefront participants, register elements, and transaction participants. Examples of hardware resources include shared-memory banks, ports, instruction phases, transactions, cache sets, memory partitions, and memory channels.
 
 The central research question is:
@@ -23,25 +21,25 @@ This repository develops that question as a research program. It is intentionall
 
 PMAG separates four basic questions:
 
-$$
+```math
 \boxed{ \text{information} \qquad \text{contention} \qquad \text{transformation} \qquad \text{synthesis} }
-$$
+```
 ### Information
 
 Which distinctions between concurrently executing entities survive the mapping to finite hardware resources?
 
 For an effective resource map
 
-$$
+```math
 F:E\rightarrow H,
-$$
+```
 we want to characterize what information about the execution domain $E$ remains observable after the mapping.
 
 In linear models this leads naturally to
 
-$$
+```math
 \mathrm{rank}F,\qquad \ker F,\qquad \mathrm{Im}F.
-$$
+```
 In more general models the corresponding objects may be fibers, equivalence classes, partitions, reachable resource states, or other structural invariants.
 
 ### Contention
@@ -50,9 +48,9 @@ Which distinct execution entities map to the same hardware resource?
 
 For a resource state $h$,
 
-$$
+```math
 F^{-1}(h)
-$$
+```
 is its execution fiber. The geometry of these fibers determines structural contention.
 
 Depending on the hardware model, this may describe bank collisions, port contention, transaction amplification, cache-set concentration, partition imbalance, or other finite-resource conflicts.
@@ -65,21 +63,19 @@ Which semantics-preserving transformations can alter the resource geometry?
 
 A transformation family may contain
 
-$$
-\text{shear},\quad \text{permutation},\quad \text{swizzle},\quad \text{padding},\quad \text{tiling},\quad \text{interleaving},\quad \text{layout conversion}.
-$$
+**shear · permutation · swizzle · padding · tiling · interleaving · layout conversion**
 Abstractly, PMAG studies
 
-$$
+```math
 H\circ T\circ A,
-$$
+```
 where $A$ describes the program access, $T$ is an admissible transformation, and $H$ maps the transformed access onto hardware resources.
 
 The goal is not to discover one universal transformation. In general,
 
-$$
+```math
 T=T(\text{access geometry},\text{hardware model},\text{objective}).
-$$
+```
 ### Synthesis
 
 Once the access, hardware model, transformation family, and objective are declared, can we construct the best transformation automatically?
@@ -106,19 +102,19 @@ hardware validation
 
 A mature solver should distinguish
 
-$$
+```math
 \boxed{\text{optimal solution}}
-$$
+```
 from
 
-$$
+```math
 \boxed{\text{provably unavoidable loss}}
-$$
+```
 and from
 
-$$
+```math
 \boxed{\text{infeasibility}}.
-$$
+```
 When practical, infeasibility should come with an independently checkable explanation or certificate.
 
 ---
@@ -233,9 +229,9 @@ RM-001 is the first exactly-solvable reference model in PMAG.
 
 It studies
 
-$$
+```math
 \boxed{ \text{affine access over }GF(2) + \text{linear bank projection} + \text{affine shear transformation} }
-$$
+```
 and asks whether one shared transformation can preserve the maximum achievable bank information across one or more access patterns.
 
 Its core pipeline is
@@ -264,36 +260,36 @@ The purpose of RM-001 is not to claim that all GPU memory behavior is linear ove
 
 Let
 
-$$
+```math
 t\in GF(2)^\ell
-$$
+```
 parameterize concurrent execution entities.
 
 An affine access is
 
-$$
+```math
 r(t)=Rt+r_0,\qquad c(t)=Ct+c_0.
-$$
+```
 Its linear access geometry is
 
-$$
+```math
 J= \begin{bmatrix} R\\ C \end{bmatrix}.
-$$
+```
 RM-001 uses the affine shear
 
-$$
+```math
 S_P(r,c)=(r,c+Pr),
-$$
+```
 with block operator
 
-$$
+```math
 S_P= \begin{bmatrix} I&0\\ P&I \end{bmatrix}.
-$$
+```
 Over $GF(2)$,
 
-$$
+```math
 S_P^2=I.
-$$
+```
 Therefore the full coordinate transformation is invertible for every $P$, even when $P$ itself is singular.
 
 ---
@@ -302,26 +298,26 @@ Therefore the full coordinate transformation is invertible for every $P$, even w
 
 The bank model is
 
-$$
+```math
 h(r,c)=B_rr+B_cc+b_0.
-$$
+```
 After applying the shear,
 
-$$
+```math
 \boxed{ M(P)=B_rR+B_cC+B_cPR }
-$$
+```
 is the effective execution-to-bank operator.
 
 The canonical bank model
 
-$$
+```math
 B_r=0,\qquad B_c=I
-$$
+```
 reduces this to
 
-$$
+```math
 M(P)=C+PR.
-$$
+```
 ---
 
 ## 6. What RM-001 Establishes
@@ -330,19 +326,19 @@ $$
 
 For a linear resource map
 
-$$
+```math
 M:GF(2)^\ell\rightarrow GF(2)^b,
-$$
+```
 the number of reachable resource states is
 
-$$
+```math
 \boxed{ 2^{\mathrm{rank}M} }
-$$
+```
 and every reachable resource state has exactly
 
-$$
+```math
 \boxed{ 2^{\ell-\mathrm{rank}M} }
-$$
+```
 execution-domain preimages.
 
 Thus rank measures reachable resource diversity and nullity measures exact structural fiber multiplicity within the model.
@@ -353,35 +349,47 @@ This is a structural statement, not a cycle-latency claim.
 
 For
 
-$$
+```math
 M(P)=C+PR,
-$$
+```
 the transformation cannot recover execution distinctions already lost simultaneously by $R$ and $C$.
 
 In the square $n$-dimensional case,
 
-$$
-\boxed{\max_P \mathrm{rank}(C+PR)=\mathrm{rank}\begin{bmatrix}R \\ C\end{bmatrix}}
-$$
+```math
+\boxed{
+\max_P \mathrm{rank}(C+PR)
+=
+\mathrm{rank}
+\begin{bmatrix}
+R \\
+C
+\end{bmatrix}
+}
+```
 or equivalently,
 
-$$
-\boxed{\max_P \mathrm{rank}(C+PR)=n-\dim(\ker R\cap\ker C)}
-$$
+```math
+\boxed{
+\max_P \mathrm{rank}(C+PR)
+=
+n-\dim(\ker R\cap\ker C)
+}
+```
 This identifies access-intrinsic information loss independently of the chosen shear.
 
 ### 6.3 Hardware-aware rank capacity
 
 For
 
-$$
+```math
 M(P)=B_rR+B_cC+B_cPR,
-$$
+```
 the current theory uses the capacity expression
 
-$$
+```math
 \boxed{ \rho^\* = \min \left\{ \mathrm{rank} \begin{bmatrix} B_rR & B_c \end{bmatrix}, \; \mathrm{rank} \begin{bmatrix} R\\ B_cC \end{bmatrix} \right\}. }
-$$
+```
 The finite $n=2$ domain has been exhaustively checked against this expression:
 
 ```text
@@ -396,24 +404,24 @@ The project deliberately distinguishes a general proof from finite exhaustive ve
 
 For canonical access $i$, define
 
-$$
+```math
 L_i= \mathrm{Im} \begin{bmatrix} R_i\\ C_i \end{bmatrix}
-$$
+```
 and
 
-$$
+```math
 \Gamma_P=\{(y,Py):y\in GF(2)^n\}.
-$$
+```
 Then the additional transformation-induced nullity is determined by
 
-$$
+```math
 L_i\cap\Gamma_P.
-$$
+```
 A pattern reaches its individual structural optimum exactly when
 
-$$
+```math
 \boxed{ L_i\cap\Gamma_P=\{0\}. }
-$$
+```
 A shared transformation must satisfy this for every modeled access.
 
 Individual solvability does not imply joint solvability. Pairwise compatibility does not in general imply global compatibility. The simultaneous problem is therefore a higher-order constraint problem.
@@ -422,16 +430,16 @@ Individual solvability does not imply joint solvability. Pairwise compatibility 
 
 For the current 5-bit model, the complete binary transformation space has
 
-$$
+```math
 2^{25}=33,554,432
-$$
+```
 matrices.
 
 For the three declared CK access patterns in the current real-system case study, exhaustive synthesis finds
 
-$$
+```math
 \boxed{ 2,887,680 }
-$$
+```
 simultaneously rank-optimal solutions.
 
 The current CK transformation is therefore one rank-optimal member of a large solution set. It is not uniquely determined by those three constraints.
@@ -450,16 +458,16 @@ RM-001 separates structural optimality from implementation cost.
 
 For a declared 5-bit linear-circuit grammar containing unit-cost
 
-$$
+```math
 SHL,\quad SHR,\quad AND,\quad XOR,
-$$
+```
 breadth-first state-space search gives exact minimum gate counts within that grammar.
 
 For the current CK transformation,
 
-$$
+```math
 \boxed{ \mathrm{cost}=4 }
-$$
+```
 under this abstract model.
 
 This is an exact circuit result, not an ISA-latency claim.
@@ -474,9 +482,9 @@ The analyzed access contains a coupled coordinate transformation for which an id
 
 Under the declared effective 32-bank model,
 
-$$
+```math
 M=0
-$$
+```
 for the problematic diagonal pattern, giving one reachable bank.
 
 The affine shear used in the proposed transformation restores full rank for the declared diagonal and anti-diagonal patterns while retaining full rank for the modeled stride-2 pattern.
@@ -524,9 +532,9 @@ The purpose is not to reduce GPU memory systems to $GF(2)$.
 
 The purpose is to begin with a domain in which the entire chain
 
-$$
+```math
 \boxed{ \text{model} \rightarrow \text{capacity} \rightarrow \text{feasibility} \rightarrow \text{synthesis} \rightarrow \text{certificate} \rightarrow \text{implementation} }
-$$
+```
 can be made exact.
 
 ---
